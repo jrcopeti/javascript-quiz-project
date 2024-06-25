@@ -27,7 +27,7 @@ class Quiz {
 
     // 5. checkAnswer(answer)
     checkAnswer(answer) {
-        this.getQuestion().anwser === answer ? this.correctAnswers++ : null;
+        this.questions[this.currentQuestionIndex].answer === answer && this.correctAnswers++;
     }
     // 6. hasEnded()
 
