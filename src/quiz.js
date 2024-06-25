@@ -27,19 +27,11 @@ class Quiz {
 
     // 5. checkAnswer(answer)
     checkAnswer(answer) {
-        // this.getQuestion().anwser === answer ? this.correctAnswers++ : null;
-        this.questions[this.currentQuestionIndex].answer === answer && this.correctAnswers++;
+        this.getQuestion().anwser === answer ? this.correctAnswers++ : null;
     }
     // 6. hasEnded()
 
     hasEnded() {
-        /* This is a more efficient way to check if all questions have been answered and also a faster way to write it.
-        return this.currentQuestionIndex === this.questions.length; */
-
-        if (this.currentQuestionIndex < this.questions.length) {
-            return false;
-        }
-        // we don't need to check if it's equal
-        return true;
+        return this.currentQuestionIndex === this.questions.length;
     }
 }
