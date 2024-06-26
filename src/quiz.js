@@ -27,8 +27,10 @@ class Quiz {
 
   // 5. checkAnswer(answer)
   checkAnswer(answer) {
-    this.questions[this.currentQuestionIndex].answer === answer &&
+    return this.questions[this.currentQuestionIndex].answer === answer &&
       this.correctAnswers++;
+
+    /* console.log(typeof this.questions[this.currentQuestionIndex].answer); */
   }
   // 6. hasEnded()
 
