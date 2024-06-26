@@ -27,10 +27,10 @@ class Quiz {
 
   // 5. checkAnswer(answer)
   checkAnswer(answer) {
-    return this.questions[this.currentQuestionIndex].answer === answer &&
-      this.correctAnswers++;
-
-    /* console.log(typeof this.questions[this.currentQuestionIndex].answer); */
+    return (
+      this.questions[this.currentQuestionIndex].answer === answer &&
+      this.correctAnswers++
+    );
   }
   // 6. hasEnded()
 
@@ -47,7 +47,10 @@ class Quiz {
   }
 
   averageDifficulty() {
-    const totalDifficulty = this.questions.reduce((sum, question) => sum + question.difficulty, 0);
+    const totalDifficulty = this.questions.reduce(
+      (sum, question) => sum + question.difficulty,
+      0
+    );
     return totalDifficulty / this.questions.length;
   }
 }
