@@ -117,9 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Update the question count text
     // Update the question count (div#questionCount) show the current question out of total questions
 
-    questionCount.innerText = `Question ${quiz.currentQuestionIndex + 1} of ${
-      questions.length
-    }`; //  This value is hardcoded as a placeholder
+    questionCount.innerText = `Question ${quiz.currentQuestionIndex + 1} of ${questions.length
+      }`; //  This value is hardcoded as a placeholder
 
     // 4. Create and display new radio input element with a label for each choice.
     // Loop through the current question `choices`.
@@ -138,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
     choices.forEach((choice) => {
       const choiceList = document.createElement("li");
       choiceList.innerHTML = `
-      <input type="radio" name="choice" value=${choice}>
+      <input type="radio" name="choice" value="${choice}">
           <label>${choice}</label>
         <br>
       `;
@@ -153,15 +152,33 @@ document.addEventListener("DOMContentLoaded", () => {
     //
     // 1. Get all the choice elements. You can use the `document.querySelectorAll()` method.
 
+    const allChoices = document.querySelectorAll("li")
+
+    allChoices.forEach((choice) => {
+      if (choice.querySelector("input").checked) {
+        selectedAnswer = choice.querySelector("input").value;
+        console.log(selectedAnswer);
+
+      }
+      return selectedAnswer;
+    })
     // 2. Loop through all the choice elements and check which one is selected
     // Hint: Radio input elements have a property `.checked` (e.g., `element.checked`).
     //  When a radio input gets selected the `.checked` property will be set to true.
     //  You can use check which choice was selected by checking if the `.checked` property is true.
 
+
+
     // 3. If an answer is selected (`selectedAnswer`), check if it is correct and move to the next question
     // Check if selected answer is correct by calling the quiz method `checkAnswer()` with the selected answer.
     // Move to the next question by calling the quiz method `moveToNextQuestion()`.
     // Show the next question by calling the function `showQuestion()`.
+
+    const rightAnswer = quiz.checkAnswer(selectedAnswer);
+
+    quiz.moveToNextQuestion();
+    showQuestion();
+
   }
 
   function showResults() {
