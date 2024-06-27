@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Update the green progress bar
     // Update the green progress bar (div#progressBar) width so that it shows the percentage of questions answered
-    quiz.currentQuestionIndex;
+    // quiz.currentQuestionIndex;
     const percentage = (quiz.currentQuestionIndex * 100) / questions.length;
     console.log("percentage", percentage);
     progressBar.style.width = `${percentage}%`;
@@ -205,3 +205,4 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
 });
+
