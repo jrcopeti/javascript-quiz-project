@@ -117,9 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Update the question count text
     // Update the question count (div#questionCount) show the current question out of total questions
 
-    questionCount.innerText = `Question ${quiz.currentQuestionIndex + 1} of ${
-      questions.length
-    }`; //  This value is hardcoded as a placeholder
+    questionCount.innerText = `Question ${quiz.currentQuestionIndex + 1} of ${questions.length
+      }`; //  This value is hardcoded as a placeholder
 
     // 4. Create and display new radio input element with a label for each choice.
     // Loop through the current question `choices`.
@@ -193,4 +192,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Update the result container (div#result) inner text to show the number of correct answers out of total questions
     resultContainer.innerText = `You scored ${quiz.correctAnswers} out of ${questions.length} correct answers!`; // This value is hardcoded as a placeholder
   }
+
+  const restartButton = document.querySelector("#restartButton");
+
+  restartButton.addEventListener("click", () => {
+    quizView.style.display = "block";
+    endView.style.display = "none";
+    quiz.correctAnswers = 0;
+    quiz.currentQuestionIndex = 0;
+    showQuestion();
+
+  })
+
 });
