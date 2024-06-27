@@ -55,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
   quiz.shuffleQuestions();
 
   /************  SHOW INITIAL CONTENT  ************/
+  // Show first question
+  showQuestion();
 
   // Convert the time remaining in seconds to minutes and seconds, and pad the numbers with zeros if needed
   const updateTimer = () => {
@@ -68,20 +70,21 @@ document.addEventListener("DOMContentLoaded", () => {
     timeRemainingContainer.innerText = `${minutes}:${seconds}`;
   }
 
-  // Show first question
-  showQuestion();
 
   /************  TIMER  ************/
 
   let timer;
+  timer = quizDuration;
 
   timer = setInterval(() => {
-    if (quiz.timeRemaining === 0) {
+    if (timer === 0) {
       clearInterval(timer);
       showResults();
+    } else {
+
+      quiz.timeRemaining--
+      updateTimer();
     }
-    quiz.timeRemaining--
-    updateTimer();
   }, 1000);
 
   /************  EVENT LISTENERS  ************/
