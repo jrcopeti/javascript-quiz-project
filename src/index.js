@@ -74,14 +74,13 @@ document.addEventListener("DOMContentLoaded", () => {
   /************  TIMER  ************/
 
   let timer;
-  timer = quizDuration;
+  timer = quiz.timeRemaining;
 
   timer = setInterval(() => {
-    if (timer === 0) {
+    if (quiz.timeRemaining === 0) {
       clearInterval(timer);
       showResults();
     } else {
-
       quiz.timeRemaining--
       updateTimer();
     }
