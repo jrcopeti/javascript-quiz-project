@@ -73,6 +73,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let timer;
 
+  timer = setInterval(() => {
+    if (quiz.timeRemaining === 0) {
+      clearInterval(timer);
+      showResults();
+    }
+    quiz.timeRemaining--
+    console.log(quiz.timeRemaining)
+  }, 1000);
+
   /************  EVENT LISTENERS  ************/
 
   nextButton.addEventListener("click", nextButtonHandler);
@@ -117,8 +126,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Update the question count text
     // Update the question count (div#questionCount) show the current question out of total questions
 
-    questionCount.innerText = `Question ${quiz.currentQuestionIndex + 1} of ${questions.length
-      }`; //  This value is hardcoded as a placeholder
+    questionCount.innerText = `Question ${quiz.currentQuestionIndex + 1} of ${
+      questions.length
+    }`; //  This value is hardcoded as a placeholder
 
     // 4. Create and display new radio input element with a label for each choice.
     // Loop through the current question `choices`.
@@ -201,8 +211,5 @@ document.addEventListener("DOMContentLoaded", () => {
     quiz.correctAnswers = 0;
     quiz.currentQuestionIndex = 0;
     showQuestion();
-
-  })
-
+  });
 });
-
