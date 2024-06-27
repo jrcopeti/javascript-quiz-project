@@ -55,31 +55,36 @@ document.addEventListener("DOMContentLoaded", () => {
   quiz.shuffleQuestions();
 
   /************  SHOW INITIAL CONTENT  ************/
-
-  // Convert the time remaining in seconds to minutes and seconds, and pad the numbers with zeros if needed
-  const minutes = Math.floor(quiz.timeRemaining / 60)
-    .toString()
-    .padStart(2, "0");
-  const seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
-
-  // Display the time remaining in the time remaining container
-  const timeRemainingContainer = document.getElementById("timeRemaining");
-  timeRemainingContainer.innerText = `${minutes}:${seconds}`;
-
   // Show first question
   showQuestion();
+
+  // Convert the time remaining in seconds to minutes and seconds, and pad the numbers with zeros if needed
+  const updateTimer = () => {
+    const minutes = Math.floor(quiz.timeRemaining / 60)
+      .toString()
+      .padStart(2, "0");
+    const seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
+
+    // Display the time remaining in the time remaining container
+    const timeRemainingContainer = document.getElementById("timeRemaining");
+    timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+  }
+
 
   /************  TIMER  ************/
 
   let timer;
+  timer = quizDuration;
 
   timer = setInterval(() => {
-    if (quiz.timeRemaining === 0) {
+    if (timer === 0) {
       clearInterval(timer);
       showResults();
+    } else {
+
+      quiz.timeRemaining--
+      updateTimer();
     }
-    quiz.timeRemaining--
-    console.log(quiz.timeRemaining)
   }, 1000);
 
   /************  EVENT LISTENERS  ************/
@@ -126,9 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Update the question count text
     // Update the question count (div#questionCount) show the current question out of total questions
 
-    questionCount.innerText = `Question ${quiz.currentQuestionIndex + 1} of ${
-      questions.length
-    }`; //  This value is hardcoded as a placeholder
+    questionCount.innerText = `Question ${quiz.currentQuestionIndex + 1} of ${questions.length
+      }`; //  This value is hardcoded as a placeholder
 
     // 4. Create and display new radio input element with a label for each choice.
     // Loop through the current question `choices`.
@@ -210,6 +214,8 @@ document.addEventListener("DOMContentLoaded", () => {
     endView.style.display = "none";
     quiz.correctAnswers = 0;
     quiz.currentQuestionIndex = 0;
+    quiz.timeRemaining = quizDuration;
+    updateTimer();
     showQuestion();
   });
 });
